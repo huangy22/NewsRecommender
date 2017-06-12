@@ -1,0 +1,9 @@
+./*/config.py
+./data/*
+./demos/*
+./ref/*
+*.pkl
+*.lda*
+*.txt
+*.json
+*.pyc
