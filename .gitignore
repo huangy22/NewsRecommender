@@ -1,8 +1,9 @@
 config.py
-./data
-./demos
-./ref
-./fig
+./data/
+./demos/
+./ref/
+./fig/
+./backup/
 *.pkl
 *.lda*
 *.txt
