@@ -10,3 +10,4 @@ config.py
 *.json
 *.pyc
 *.png
+fake*
