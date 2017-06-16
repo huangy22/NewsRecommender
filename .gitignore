@@ -4,6 +4,7 @@ config.py
 ./ref/
 ./fig/
 ./backup/
+./.ipynb_checkpoints/
 *.pkl
 *.lda*
 *.txt
