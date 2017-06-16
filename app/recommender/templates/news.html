@@ -1,0 +1,213 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en" class="no-js">
+<style type="text/css">
+    .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 8px;
+    /*background: rgba(0, 0, 0, 0.8);*/
+    background: lightgrey;
+    /*color: #fff;*/
+    color: black;
+    border-radius: 2px;
+    }
+
+
+    /* Navigation highlight for current page */
+    body#home a#homenav, body#about a#aboutnav, body#menupage a#menunav, body#contact a#contactnav {
+        background-color: #843534;
+    }
+
+    .current:after {
+        content: ' ';
+        position: absolute;
+        border: solid 10px transparent;
+        border-top: solid 0px transparent;
+        border-width: 10px;
+        left: 50%;
+        margin-left: -10px;
+        border-color: #843534 transparent transparent transparent;
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get News Insight</title>
+    <meta name="description" content="We recommend you news based on based on your interest!" />
+    <meta name="keywords" content="news recommendation insight"
+    />
+    <meta name="author" content="Yuan Huang" />
+    <!--<link rel="shortcut icon" href="./static/fonts/favicon.ico">-->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/lib/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../static/lib/css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/starter-template.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="../static/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/component.css" />
+
+    <script src="../static/js/modernizr.custom.js"></script>
+    <script src="../static/lib/js/jquery.min.js"></script>
+    <script src="../static/lib/js/jquery.sticky.js"></script>
+    <script src="../static/js/d3.js"></script>
+    <script src="../static/js/d3.layout.cloud.js"></script>
+    <script src="../static/js/d3.wordcloud.js"></script>
+    <script src="../static/js/update.js"></script>
+</head>
+
+<body>
+    <div class="head-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+        	<div class="navbar-header">
+        	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        	    <span class="sr-only">Toggle navigation</span>
+        	    <span class="icon-bar"></span>
+        	    <span class="icon-bar"></span>
+        	    <span class="icon-bar"></span>
+        	  </button>
+        	  <a class="navbar-brand" href="{{ url_for('index') }}">Broaden Your News Horizons</a>
+        	</div>
+        	<div id="navbar" class="collapse navbar-collapse">
+        	  <ul class="nav navbar-nav">
+        	    <li><a href="{{ url_for('index') }}">Dashboard</a></li>
+        	    <li class="active"><a href="{{ url_for('news') }}">News Recommendation</a></li>
+        	    <li><a href="{{ url_for('how') }}">How It Works</a></li>
+        	    <li><a href="{{ url_for('about') }}">About Me</a></li>
+        	  </ul>
+        	</div><!--/.nav-collapse -->
+          </div>
+
+          <div class="twitterbox">
+              <form action="javascript:document.cookie='user='+document.getElementById('twitter').value.toString();location.reload();">
+                <label id="twittertxt"> Please input your twitter account to get better recommendation: </label>
+                <!-- <span class="icon"><i class="fa fa-search"></i></span> -->
+                <input type="text" name="twitter" id="twitter" placeholder="your twitter account ...">
+              </form>
+          </div>
+        </nav>
+    </div>
+
+    <div class="block"> I am here to block the traffic </div>
+
+    <!-- <div id="wordcloud1">
+      hello
+    </div>
+    <script>
+      d3.wordcloud()
+        .size([500, 300])
+        .selector("#wordcloud1")
+        .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
+        .words([{text: 'word', size: 5}, {text: 'cloud', size: 15}])
+        .onwordclick(function(d, i) {
+          if (d.href) { window.location = d.href; }
+        })
+        .start();
+    </script> -->
+    <div class="container-1">
+        <!-- <header class="clearfix"> -->
+              <!-- <span> -->
+              <!-- <h1>News Insight</h1> -->
+            <!-- <nav>
+                <a href="http://tympanus.net/Blueprints/FullWidthTabs/" class="bp-icon bp-icon-prev"
+                    data-info="previous Blueprint"><span>Previous Blueprint</span></a>
+                <a href="http://tympanus.net/codrops/?p=18699" class="bp-icon bp-icon-drop" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
+                <a href="http://tympanus.net/codrops/category/blueprints/" class="bp-icon bp-icon-archive"
+                    data-info="Blueprints archive"><span>Go to the archive</span></a>
+            </nav> -->
+        <!-- </header> -->
+
+        <div id="grid-gallery" class="grid-gallery">
+            <section class="grid-wrap">
+                <ul class="grid" id="grid">
+                    <!-- for Masonry column width -->
+                    <li class="grid-sizer"></li>
+                    <li class="grid-li-info">
+                      <figure id="wordcloud1" class="wordcloud">
+                      </figure>
+                    </li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                    <li class="grid-li"></li>
+                </ul>
+            </section>
+            <!-- // grid-wrap -->
+            <section class="slideshow">
+                <ul id="slide">
+                    <li class="slide-li-info">
+                      <figure id="wordcloud2" class="wordcloud">
+                      </figure>
+                    </li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                    <li class="slide-li"></li>
+                </ul>
+                <nav>
+                    <span class="icon nav-prev"></span>
+                    <span class="icon nav-next"></span>
+                    <span class="icon nav-close"></span>
+                </nav>
+                <div class="info-keys icon">Navigate with arrow keys</div>
+            </section>
+            <!-- // slideshow -->
+        </div>
+        <!-- // grid-gallery -->
+    </div>
+
+    <script src="../static/js/imagesloaded.pkgd.min.js"></script>
+    <script src="../static/js/masonry.pkgd.min.js"></script>
+    <script src="../static/js/classie.js"></script>
+    <script src="../static/js/cbpGridGallery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/lib/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../static/lib/js/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../static/js/sb-admin-2.js"></script>
+
+    <script>
+      pos=document.getElementsByClassName("twitterbox")[0].getBoundingClientRect()["bottom"];
+      $('.block').css('height', pos.toString()+'px');
+    </script>
+    <script>
+        update(getCookie("user"))
+    </script>
+    <!-- <script>
+        new CBPGridGallery(document.getElementById('grid-gallery'));
+    </script> -->
+</body>
+
+</html>
