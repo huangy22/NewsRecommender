@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-from sklearn import cluster
-from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
-
-import pandas as pd
 import numpy as np
 import re
 from time import sleep
@@ -12,8 +8,8 @@ import pickle
 import random
 
 from pymongo import MongoClient
-
 from wordcloud import WordCloud, STOPWORDS
+
 client = MongoClient()
 db = client.twitter
 
@@ -21,12 +17,14 @@ def get_articles_for_group(size=10, group=-1):
     articles = []
     article_list = db.group_articles.find_one({"id": group})["articles"]
     i = 0
+    titles = set()
     for article_id in article_list:
         if i == size*2:
             break
         article = db.rec_articles.find_one({"id": article_id})
-        if article and len(article["summary"])>100:
+        if article and len(article["summary"])>100 and article["title"] not in titles:
             entry = {}
+	    titles.add(article["title"])
             entry["title"] = article["title"]
             entry["text"] = article["text"]
             entry["summary"] = article["summary"]
@@ -120,5 +118,7 @@ def get_words(group):
 def get_recommendations(name):
     group = predict_user_group(name)
     articles = get_articles_for_group(size=10, group=group)
+    #save_articles(articles)
+    #articles = pickle.load(open('./articles.pkl', 'rb'))
     words = get_words(group)
     return {"articles": articles, "words": words, "group": group}

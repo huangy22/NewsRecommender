@@ -132,7 +132,7 @@
         .on("mouseover", function(d, i) {
           if (onwordclick !== undefined) {
             // console.log("original size: "+size)
-            d3.select(this).transition().style('font-size', d.size + 3 + 'px');
+            d3.select(this).transition().style('font-size', d.size + 6 + 'px');
           }
         })
         .on("mouseout", function(d, i) {

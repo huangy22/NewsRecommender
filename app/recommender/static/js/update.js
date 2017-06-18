@@ -75,8 +75,8 @@ function update(user_name)
     console.log(ret)
     news=ret["articles"];
     words=ret["words"];
-    // group=parseInt(ret["group"])
-    group=-1;
+    group=parseInt(ret["group"])
+    //group=-1;
     delete words[""]
     var value;
     var max=0.0
@@ -88,13 +88,13 @@ function update(user_name)
     wordcloud=document.getElementsByClassName("wordcloud");
     for(i=0;i<wordcloud.length;i++){
       if(group>=0){
-        info="According to your retweeting history"
+        info="According to your retweeting histories, you might be interested in these topics:"
       }else{
-        info="According to users' average interests"
+        info="It seems you haven't retweeted any news for a while, start explore with these topics:"
       }
       var figcaption = document.createElement("figcaption");
-      figcaption.innerHTML="<h3>You may intestest in ...</h3>\n"
-      +"<p class='wordcloudp'>("+info+")</p>";
+      figcaption.innerHTML="<h3>Topics</h3>\n"
+      +"<p class='wordcloudp'>"+info+"</p>";
       wordcloud[i].appendChild(figcaption);
     }
     var wordlist=[];
@@ -109,9 +109,9 @@ function update(user_name)
         .size([400, 200])
         .selector('#wordcloud1')
         .scale("sqrt")
-        // .onwordclick(function(d, i) {
-        //   if (d.href) { window.location = d.href; }
-        // })
+        .onwordclick(function(d, i) {
+           if (d.href) { window.location = d.href; }
+        })
         // .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
         .words(wordlist)
         .start();
@@ -129,9 +129,9 @@ function update(user_name)
         .size([600, 600])
         .selector('#wordcloud2')
         .scale("sqrt")
-        // .onwordclick(function(d, i) {
-        //   if (d.href) { window.location = d.href; }
-        // })
+        .onwordclick(function(d, i) {
+           if (d.href) { window.location = d.href; }
+        })
         // .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
         .words(wordlist)
         // .spiral("rectangular")
