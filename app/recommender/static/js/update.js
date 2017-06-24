@@ -75,9 +75,8 @@ function update(user_name)
     console.log(ret)
     news=ret["articles"];
     words=ret["words"];
-    group=parseInt(ret["group"])
-    //group=-1;
-    delete words[""]
+    group=parseInt(ret["group"]);
+    delete words[""];
     var value;
     var max=0.0
     Object.keys(words).forEach(function(key) {
@@ -88,15 +87,20 @@ function update(user_name)
     wordcloud=document.getElementsByClassName("wordcloud");
     for(i=0;i<wordcloud.length;i++){
       if(group>=0){
-        info="According to your retweeting histories, you might be interested in these topics:"
+        info="According to your retweeting history, here are some topics you might be interested:"
       }else{
-        info="It seems you haven't retweeted any news for a while, start explore with these topics:"
+        info="It seems that you haven't retweeted news lately. Start exploring with those topics:"
       }
       var figcaption = document.createElement("figcaption");
-      figcaption.innerHTML="<h3>Topics</h3>\n"
-      +"<p class='wordcloudp'>"+info+"</p>";
+      figcaption.innerHTML="<p>"+info+"</p>";
+
+      var title = document.createElement("div");
+      title.innerHTML="<h3 class='grid_title'>Topics Picked For You</h3>"
+
+      wordcloud[i].appendChild(title);
       wordcloud[i].appendChild(figcaption);
     }
+
     var wordlist=[];
     Object.keys(words).forEach(function(key) {
         value = words[key];
@@ -105,12 +109,13 @@ function update(user_name)
           wordlist.push({"text":key, "size":Math.sqrt(value/max)*40})
         }
     });
+
     d3.wordcloud()
         .size([400, 200])
         .selector('#wordcloud1')
         .scale("sqrt")
         .onwordclick(function(d, i) {
-           if (d.href) { window.location = d.href; }
+          if (d.href) { window.location = d.href; }
         })
         // .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
         .words(wordlist)
@@ -130,7 +135,7 @@ function update(user_name)
         .selector('#wordcloud2')
         .scale("sqrt")
         .onwordclick(function(d, i) {
-           if (d.href) { window.location = d.href; }
+          if (d.href) { window.location = d.href; }
         })
         // .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
         .words(wordlist)
@@ -151,8 +156,13 @@ function update(user_name)
       length=news[i]["summary"].length
       index=nthIndex(news[i]["summary"],".",2) //index of the end of n-th sentence
       if(index<=0) index=length
-      figcaption.innerHTML="<h3>"+news[i]["title"]+"</h3>\n<p>"+news[i]["summary"].slice(0,index+1)+" ...</p>"
+      figcaption.innerHTML="<p>Original source: <a href="+news[i]["url"]+"> "+news[i]["source"]+"</a></p>\n<p>"+news[i]["summary"].slice(0,index+1)+" ...</p>"
+      //figcaption.innerHTML="<p>"+news[i]["summary"].slice(0,index+1)+" ...</p>"
 
+      var title = document.createElement("div");
+      title.innerHTML="<h3 class='grid_title'>"+news[i]["title"]+"</h3>"
+
+      figure.appendChild(title);
       figure.appendChild(image);
       figure.appendChild(figcaption);
       grid_list[i].appendChild(figure);
@@ -167,7 +177,7 @@ function update(user_name)
 
       var figcaption = document.createElement("figcaption");
       // +news[i]["text"]+"</p>"
-      figcaption.innerHTML="<h3>"+news[i]["title"]+"</h3>\n<p>SUMMARY: "+news[i]["summary"]+"</p>"
+      figcaption.innerHTML="<h3>"+news[i]["title"]+"</h3>\n"+"<p>Original source: <a href="+news[i]["url"]+"> "+news[i]["source"]+"</a></p>\n<p>"+news[i]["summary"].slice(0,index+1)+" ...</p>"
 
       var body = document.createElement("div");
       body.innerHTML="<br /><p>"+news[i]["text"]+"</p>"

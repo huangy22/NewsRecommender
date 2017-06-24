@@ -35,7 +35,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Broden Your News Horizons</title>
+    <title>News4U</title>
     <meta name="description" content="We recommend you news based on based on your interest!" />
     <meta name="keywords" content="news recommendation insight"
     />
@@ -57,8 +57,12 @@
     <!-- Fonts -->
     <link href="../static/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-
     <link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
+
+    <!-- Theme CSS -->
+    <!--<link href="../static/css/grayscale.min.css" rel="stylesheet">-->
+    <link href="../static/css/grayscale.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="../static/css/component.css" />
 
     <script src="../static/js/modernizr.custom.js"></script>
@@ -82,11 +86,10 @@
         	    <span class="icon-bar"></span>
         	    <span class="icon-bar"></span>
         	  </button>
-        	  <a class="navbar-brand" href="{{ url_for('index') }}">Broaden Your News Horizons</a>
+        	  <a class="navbar-brand" href="{{ url_for('news') }}">News4U</a>
         	</div>
         	<div id="navbar" class="collapse navbar-collapse">
         	  <ul class="nav navbar-nav">
-        	    <li><a href="{{ url_for('index') }}">Dashboard</a></li>
         	    <li class="active"><a href="{{ url_for('news') }}">News Recommendation</a></li>
         	    <li><a href="{{ url_for('how') }}">How It Works</a></li>
         	    <li><a href="{{ url_for('about') }}">About Me</a></li>
@@ -201,6 +204,7 @@
     <script>
       pos=document.getElementsByClassName("twitterbox")[0].getBoundingClientRect()["bottom"];
       $('.block').css('height', pos.toString()+'px');
+      $('.navbar').css('height', pos.toString()+'px');
     </script>
     <script>
         update(getCookie("user"))

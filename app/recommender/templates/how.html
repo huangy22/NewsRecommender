@@ -1,0 +1,146 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en" class="no-js">
+<style type="text/css">
+    .d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 8px;
+    /*background: rgba(0, 0, 0, 0.8);*/
+    background: lightgrey;
+    /*color: #fff;*/
+    color: black;
+    border-radius: 2px;
+    }
+
+
+    /* Navigation highlight for current page */
+    body#home a#homenav, body#about a#aboutnav, body#menupage a#menunav, body#contact a#contactnav {
+        background-color: #843534;
+    }
+
+    .current:after {
+        content: ' ';
+        position: absolute;
+        border: solid 10px transparent;
+        border-top: solid 0px transparent;
+        border-width: 10px;
+        left: 50%;
+        margin-left: -10px;
+        border-color: #843534 transparent transparent transparent;
+    }
+
+    <!--#slides {-->
+	  <!--z-index: 15;-->
+	  <!--top: 50%;-->
+	  <!--left: 50%;-->
+	  <!--background: black;-->
+	<!--}-->
+
+</style>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News4U</title>
+    <meta name="description" content="We recommend you news based on based on your interest!" />
+    <meta name="keywords" content="news recommendation insight"
+    />
+    <meta name="author" content="Yuan Huang" />
+    <!--<link rel="shortcut icon" href="./static/fonts/favicon.ico">-->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/lib/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../static/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../static/lib/css/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../static/css/starter-template.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="../static/lib/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/demo.css" />
+
+    <!-- Theme CSS -->
+    <!--<link href="../static/css/grayscale.min.css" rel="stylesheet">-->
+    <link href="../static/css/grayscale.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/component.css" />
+
+    <script src="../static/js/modernizr.custom.js"></script>
+    <script src="../static/lib/js/jquery.min.js"></script>
+    <script src="../static/lib/js/jquery.sticky.js"></script>
+    <script src="../static/js/d3.js"></script>
+    <script src="../static/js/d3.layout.cloud.js"></script>
+    <script src="../static/js/d3.wordcloud.js"></script>
+    <script src="../static/js/update.js"></script>
+</head>
+
+<body>
+    <div class="head-wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+        	<div class="navbar-header">
+        	  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        	    <span class="sr-only">Toggle navigation</span>
+        	    <span class="icon-bar"></span>
+        	    <span class="icon-bar"></span>
+        	    <span class="icon-bar"></span>
+        	  </button>
+        	  <a class="navbar-brand" href="{{ url_for('news') }}">News4U</a>
+        	</div>
+        	<div id="navbar" class="collapse navbar-collapse">
+        	  <ul class="nav navbar-nav">
+        	    <li><a href="{{ url_for('news') }}">News Recommendation</a></li>
+        	    <li class="active"><a href="{{ url_for('how') }}">How It Works</a></li>
+        	    <li><a href="{{ url_for('about') }}">About Me</a></li>
+        	  </ul>
+        	</div><!--/.nav-collapse -->
+          </div>
+        </nav>
+    </div>
+
+    <div class="block"> I am here to block the traffic </div>
+
+    <section class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+		<h2>How It Works</h2>
+		<p>Read my <a href="https://medium.com/@huangy22/news-for-you-9b049b6724c4">blog</a> on medium for more technical details.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class='container content-section text-center'>
+	<div id="slides">
+	    <iframe src="https://docs.google.com/presentation/d/1kR9gNXfjGsfjfrGW9R3YoR5ICjH4Utg88iFHWfyFgSE/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+        </div>
+    </footer>
+
+    <!-- Theme JavaScript -->
+    <script src="../static/js/grayscale.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/lib/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../static/lib/js/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../static/js/sb-admin-2.js"></script>
+
+</body>
+
+</html>

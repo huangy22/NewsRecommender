@@ -15,10 +15,6 @@ db = client.twitter
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
 
 @app.route('/')
-@app.route('/index/')
-def index():
-    return render_template("index.html")
-
 @app.route('/news/')
 def news():
     return render_template('news.html')

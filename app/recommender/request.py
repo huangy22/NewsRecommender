@@ -26,6 +26,8 @@ def get_articles_for_group(size=10, group=-1):
             entry = {}
 	    titles.add(article["title"])
             entry["title"] = article["title"]
+            entry["url"] = article["url"]["url"]
+            entry["source"] = article["source"]["name"]
             entry["text"] = article["text"]
             entry["summary"] = article["summary"]
             entry["keywords"] = article["keywords"]
@@ -51,8 +53,8 @@ def majority_vote(labels):
         return 5
 
 def predict_user_group(name, validate=False):
-    user_active = db.active_users.find_one({"name": name})
-    user_not_active = db.user_merge.find_one({"name": name})
+    user_active = db.active_users.find_one({"handle": name})
+    user_not_active = db.user_merge.find_one({"handle": name})
     if not validate and user_active:
         return user_active["label"]
     elif user_not_active:
