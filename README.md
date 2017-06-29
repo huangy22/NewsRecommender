@@ -12,7 +12,7 @@ News4U is a news recommendation engine which combines collaborative filtering wi
 
 ### Using News4U
 
-Input your Twitter handle, the app will try to understand your interest on news: What articles have you read and retweeted on Twitter? The app will find the user group who share similar interest with you, provide you the potential topics you might be interested in, and recommend news according to the topics your user group likes. On the web app, you directly read the whole article, or follow the link to the original site to find more details.
+Input your Twitter handle, the app will try to understand your interest on news based on what articles have you read and retweeted on Twitter. The app will find the user group who share similar interests with you, provide you the potential topics you might be interested in, and recommend news with topics your  group would like. On the web app, you can directly read the whole article, or follow the link to the original site to find more details.
 
 ### How News4U works
 
@@ -32,6 +32,8 @@ As the first step, the engine identifies readers with similar interests on news 
 
 Applying hierarchical clustering algorithm to the user network, we can detect the community structures among the readers. The hierarchical clustering algorithm uses a greedy method to try to optimize the modularity of clusters. The modularity is an important metric for network clustering, which indicates how dense the connections within clusters are compared to the connections between different clusters. In our user network, the modularity score of the hierarchical clustering algorithm peaks at 6 clusters with value 0.151. 
 
+![alt text](./img/clusters.png "Group Structure in Reader Interest Network")
+
 #### Topic modeling
 
 In order to understand the topics of news articles, I used a natural language processing tool called Latent Dirichlet Allocation (LDA) model that allows computers to identity hidden topics of documents based on the cooccurrence frequency of words collected from those documents. LDA can also help find out how much of an article is devoted to a particular topic, which allows the system to categorize an article, for instance, as 50% environment and 40% politics.
@@ -39,6 +41,7 @@ In order to understand the topics of news articles, I used a natural language pr
 I trained the LDA model on the texts of more than 8,000 articles collected using a package newspaper. The number of topics was chosen by trying to achieve a diverse topic coverage without having too many topics. The diversity of topics can be evaluated by the average Jaccard similarity between topics. High Jaccard similarity indicates strong overlap and less diversity between topics, while low similarity means the topics are more diverse and have a better coverage among all the aspects in the articles.
 
 The interests among different topics from user group can be learnt from the topics of articles with a high number of retweets by the readers in the group. By aggregating the topics of each article weighted by the number of retweets, we can obtained the topic probability distribution for all the user groups.
+![alt text](./img/group_0_3.png "Topic Distributions in Group 0 and 3")
 
 #### Making recommendations
 
@@ -59,6 +62,8 @@ This good/bad, positive/negative framework is the same as binary classification 
 All these metrics are clear once we have defined the threshold of good/bad in our predictions. For instance, in a binary situation our labels are 0, 1 while our predictions are continuous from 0–1. To compare the predictions, we select a threshold (here we choose the median value of all the predictions), above which we call predictions 1 and below 0. From 10 rounds of validations with 1000 hold-out articles, the average precision score of our recommending system is 65.9%, while the average recall is 66.5%.
 
 The choice of the threshold is left to the user, and can be varied depending on desired tradeoffs. Therefore to summarize classification performance generally, we need metrics that can provide summaries over this threshold. One tool for generating such a metric is the Receiver Operator Characteristic (ROC) curve, which plots the True Positive Rate (TPR) versus the False Positive Rate (FPR) at different threshold levels. The area under the curve (often referred to as the AUC) indicates the probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative one. The average AUC of our recommender is 0.77, which is a fair score that can provide some insight on the predictive power of our model.
+
+![alt text](./img/roc.png)
 
 ### Summary & What’s Next
 
