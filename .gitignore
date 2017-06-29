@@ -10,5 +10,4 @@ config.py
 *.txt
 *.json
 *.pyc
-*.png
 fake*
