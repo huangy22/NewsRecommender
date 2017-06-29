@@ -16,7 +16,7 @@ Input your Twitter handle, the app will try to understand your interest on news 
 
 ### How News4U works
 
-![alt text](./img/concept.jpg)
+![alt text](./img/concept.png)
 
  In this section, I’ll explain how I build the recommendation engine from the ground up.
 
@@ -31,7 +31,7 @@ Input your Twitter handle, the app will try to understand your interest on news 
 #### Finding readers with similar interests
 
 As the first step, the engine identifies readers with similar interests on news based on their retweeting behavior of news posted on twitter. The data was collected from news posted on twitter by three different publishers (New York Times, Washington Post, and Bloomberg) for half a month. The information of all the twitter users who are retweeting the articles are also requested from Twitter. By looking at how many news posts each two users share in common, we can define a cosine similarity score for the users. Therefore a user network can be constructed by assigning the weight of link between two users to their similarity.
-![alt text](./img/network.jpg)
+![alt text](./img/network.png)
 
 Applying hierarchical clustering algorithm to the user network, we can detect the community structures among the readers. The hierarchical clustering algorithm uses a greedy method to try to optimize the modularity of clusters. The modularity is an important metric for network clustering, which indicates how dense the connections within clusters are compared to the connections between different clusters. In our user network, the modularity score of the hierarchical clustering algorithm peaks at 6 clusters with value 0.151. 
 
@@ -51,7 +51,7 @@ The interests among different topics from user group can be learnt from the topi
 Now that we divided the users into different groups based on their similarity and identified their interests among different topics, the next step is to build a content-based news articles recommendation by matching the topics of the fresh news with the topic profile of each user group. In other words, our recommendation engine doesn’t provide personalized recommendations sorely based on a particular user’s interest, but instead gives group-based recommendations in order to obtain a more diverse result. 
 
 When recommending new articles to a user group, we want to find articles that have the most similar topics with the group’s interests. A similarity score between each new article and the group is calculated as the cosine similarity of their topic distributions. Ranking by the similarity scores, the best-matching articles will be recommended to all the readers within the reader group.
-![alt text](./img/pipeline.jpg")
+![alt text](./img/pipeline.png")
 
 #### Evaluation of the recommender
 
