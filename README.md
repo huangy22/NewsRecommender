@@ -2,9 +2,25 @@
 
 *Recommend stories based on collaborative reader behavior*
 
-### What is News4U
+## 🚀 Quick Start
+
+**New to News4U?** Check out our comprehensive guides:
+
+- **[Getting Started Guide](./GETTING_STARTED.md)** - Complete setup and execution instructions
+- **[Data Scraping Guide](./DATA_SCRAPING_GUIDE.md)** - Step-by-step data collection tutorial
+- **[Configuration Example](./config.example.py)** - API credentials template
+
+Having trouble with setup? See [Issue #2](https://github.com/huangy22/NewsRecommender/issues/2) for common problems and solutions.
+
+---
+
+## What is News4U
 
 Online news reading has become very popular as the web provides access to news articles from millions of sources around the world. A critical problem is that the volumes of articles can be overwhelming to the readers. Therefore, building a news recommendation system to help users find news that are interesting to read is a crucial task for every online news service. 
+
+News recommendations must perform well on fresh content: breaking news that hasn't been viewed by many readers yet. Thus we need to leverage on the article content data available at publishing time, such as topics, categories, and tags, to build a content-based model, and match it to readers' interests learnt from their reading histories. However, one drawback of the content-based recommendations is that when there's not enough history about a user, the coverage of the recommendations will become very limited, which is the common cold-start problem in recommender systems.
+
+News4U is a news recommendation engine which combines collaborative filtering with content-based filtering to try to make news recommendations more diverse. This so-called hybrid-filtering recommendation system takes into account not only the content of the articles and the user's reading history, but also the reading history of people who share similar interests. By learning from the history of people with similar interests, this engine will recommend news with a much broader coverage of topics, even when the history information about a particular user is very limited. 
 
 News recommendations must perform well on fresh content: breaking news that hasn’t been viewed by many readers yet. Thus we need to leverage on the article content data available at publishing time, such as topics, categories, and tags, to build a content-based model, and match it to readers’ interests learnt from their reading histories. However, one drawback of the content-based recommendations is that when there’s not enough history about a user, the coverage of the recommendations will become very limited, which is the common cold-start problem in recommender systems.
 
